@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import OverlayMenu from './OverlayMenu.jsx'
 import Logo from "../assets/Logo.png";
 import { FiMenu } from "react-icons/fi";
@@ -7,11 +7,17 @@ const Navbar = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [visible, setVisible] = useState(true);
+  const [forceVisible, setForceVisible] = useState(false);
+
+  const lastScrollY = useRef(0);
+  const timerId = useRef(null);
+
+  
 
   return (
     <>
 
-      <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-6 py-4 z-50 transition-transform duration-300 ${visible ? "translate-y-0" : "translate-y-full"}`}>
+      <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-6 py-4 z-50 transition-transform duration-300 ${visible ? "translate-y-0" : "-translate-y-full"}`}>
         <div className='flex items-center space-x-2'>
           <img src={Logo} alt="" className='w-8 h-8' />
           <div className='text-2xl font-bold text-white hidden sm:block'>Harshal</div>
@@ -28,7 +34,7 @@ const Navbar = () => {
         </div>
 
       </nav>
-      <OverlayMenu isOpen = {menuOpen} onCLose={() => setMenuOpen(false)}/>
+      <OverlayMenu isOpen = {menuOpen} onClose={() => setMenuOpen(false)}/>
     </>
   )
 }
