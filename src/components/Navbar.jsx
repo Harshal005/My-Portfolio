@@ -44,7 +44,7 @@ const Navbar = () => {
 
       const currentScrollY = window.scrollY;
       if(currentScrollY > lastScrollY.current) setVisible(false);
-      else setVisible(true                   );
+      else setVisible(true);
 
       if(timerId.current) clearTimeout(timerId.current);
       timerId.current = setTimeout(()=>{
